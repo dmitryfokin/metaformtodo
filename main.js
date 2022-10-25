@@ -2,6 +2,7 @@
 
 const path = require('node:path');
 const metadataLoad = require('./lib/metadataLoad.js');
+const modulesLoad = require('./lib/modulesLoad.js');
 
 const rootPath = process.cwd();
 const metadata = {};
@@ -15,11 +16,7 @@ metadata.app = {
   const sandbox = {metadata, console: console};
   sandbox.node = {path};
   await metadataLoad(sandbox, 'config');
-  
-  for (const key of Object.keys(metadata.modules)) {
-    const {mountPoint, fn} = metadata.modules[key];
-    sandbox[mountPoint] = fn(metadata.config);
-  };
+  await modulesLoad(sandbox);
   
   sandbox.console.log(metadata);
 })();

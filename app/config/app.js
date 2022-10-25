@@ -1,4 +1,5 @@
 ({
+  active: true,
   metadata: {
     app: {
       name: 'TODO List',
