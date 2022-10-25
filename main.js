@@ -13,11 +13,14 @@ metadata.app = {
 };
 
 (async () => {
-  const sandbox = {metadata, console: console};
-  sandbox.node = {path};
-  await metadataLoad(sandbox, 'config');
+  const sandbox = { metadata, console: console, modules: {} };
+  sandbox.node = { path };
+  await metadataLoad(sandbox, { config: { kindPath: 'config' } });
   await modulesLoad(sandbox);
-  
-  
+  await metadataLoad(sandbox, metadata.kinds);
+
+  sandbox.console.log(await metadata.services.api.fn());
+  sandbox.console.log(await metadata.services.staticServer.fn());
+
   sandbox.console.log(metadata);
 })();

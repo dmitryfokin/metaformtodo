@@ -1,7 +1,6 @@
 
 const active = true;
 if (active) {
-
   const loadTransport = (config) => {
     const transportPath = 'transport';
     const { modulesPath } = metadata.app;

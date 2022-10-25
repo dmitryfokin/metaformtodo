@@ -1,33 +1,33 @@
 
 const active = true;
 if (active) {
+  const apiConfig = {
+    transport: 'ws',
+    port: '8201',
+  };
 
   const runServise = () => {
-    console.debug(transport);
-    // transport()
-
-
-    // const transportPath = 'transport';
-    // const { modulesPath } = metadata.app;
-
-    // const filePath = node.path.join(modulesPath, transportPath, `${config.transport}.js`);
-    // return require(filePath);
+    const { config } = metadata;
+    const transport = modules.transport({ ...config.api });
+    transport(metadata.routing, config.api.port, console);
   };
 
   ({
     active,
-    config:{
-      transport: 'ws',
-      port: '8201',
-    },
     metadata: {
-      kinds: {
-        pathKind: 'api',
-        mountPoint: 'routing',
+      config: {
+        api: apiConfig,
       },
-      service: {
-        fn: async () => {
-          runServise();
+      kinds: {
+        api: {
+          kindPath: 'api',
+        },
+      },
+      services: {
+        api: {
+          fn: () => {
+            runServise();
+          },
         },
       },
     }

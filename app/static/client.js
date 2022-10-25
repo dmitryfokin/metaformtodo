@@ -55,7 +55,10 @@ const scaffold = (url) => {
 };
 
 (async () => {
-  const api = await scaffold('http://localhost:8001')({
+  console.log(location);
+  // const protocol = location.protocol === 'http:' ? 'ws' : 'wss';
+  // this.metacom = Metacom.create(`${protocol}://${location.host}/api`);
+  const api = await scaffold(`ws://${location.hostname}:8201`)({
     user: {
       create: ['record'],
       read: ['id'],
