@@ -18,5 +18,6 @@ metadata.app = {
   await metadataLoad(sandbox, 'config');
   await modulesLoad(sandbox);
   
+  
   sandbox.console.log(metadata);
 })();
