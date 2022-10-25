@@ -7,9 +7,8 @@ if (active) {
   };
 
   const runServise = () => {
-    const { config } = metadata;
-    const transport = modules.transport({ ...config.api });
-    transport(metadata.routing, config.api.port, console);
+    const transport = modules.transport(apiConfig);
+    transport(metadata.routing, apiConfig.port, console);
   };
 
   ({

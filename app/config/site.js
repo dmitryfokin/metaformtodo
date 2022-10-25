@@ -8,11 +8,9 @@ if (active) {
 
   const runServise = () => {
     const staticServer = modules.staticServer({ ...siteConfig });
-    // const { app } = metadata;
-    // const pathStatic = node.path(app.appPath, siteConfig.pathStatic);
-  
-    // staticServer(pathStatic, siteConfig.port, console);
-    staticServer('./app/static', siteConfig.port, console);
+    const { app } = metadata;
+    const pathStatic = node.path.join(app.appPath, siteConfig.pathStatic);
+    staticServer(pathStatic, siteConfig.port, console);
   };
 
   ({
