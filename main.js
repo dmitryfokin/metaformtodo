@@ -3,6 +3,7 @@
 const path = require('node:path');
 const metadataLoad = require('./lib/metadataLoad.js');
 const modulesLoad = require('./lib/modulesLoad.js');
+const servicesLoad = require('./lib/servicesLoad.js');
 
 const rootPath = process.cwd();
 const metadata = {};
@@ -18,9 +19,5 @@ metadata.app = {
   await metadataLoad(sandbox, { config: { kindPath: 'config' } });
   await modulesLoad(sandbox);
   await metadataLoad(sandbox, metadata.kinds);
-
-  sandbox.console.log(await metadata.services.api.fn());
-  sandbox.console.log(await metadata.services.staticServer.fn());
-
-  sandbox.console.log(metadata);
+  await servicesLoad(sandbox);
 })();
