@@ -1,7 +1,5 @@
 'use strict';
 
-const pg = require('pg');
-
 const crud = (pool) => (table) => ({
   async query(sql, args) {
     const result = await pool.query(sql, args);
@@ -51,4 +49,4 @@ const crud = (pool) => (table) => ({
   },
 });
 
-module.exports = (options) => crud(new pg.Pool(options));
+module.exports = (pg, options) => crud(new pg.Pool(options));
