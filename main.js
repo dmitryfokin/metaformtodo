@@ -12,7 +12,6 @@ const appSandbox = {
   rootPath,
   appPath: path.join(rootPath, 'app'),
   modulesPath: path.join(rootPath, 'modules'),
-  
   metadata: {
     config: {},
     mount(kind, mountPoint, data = {}, remount = false) {
@@ -23,18 +22,15 @@ const appSandbox = {
     },
   },
   startAfterInit: [],
-  
   console: console,
   node: { path, fs },
   npm: {},
-
   mount(mountPoint, data = {}, remount = false) {
     if (!remount && mountPoint in this)
       throw (`key ${mountPoint} is already exists in appSandbox`);
     this[mountPoint] = data;
   },
 };
-
 
 (async () => {
   await npmLoad(appSandbox);
